@@ -44,8 +44,29 @@ namespace HelloWorld
                 }
             }
 
-            // Make this have options
-            Console.WriteLine("Howdy Y'all!!");
+            Console.WriteLine("Choose a greeting: Cool, Formal, Yorkshire");
+            var userInput = Console.ReadLine().ToLower();
+
+            if (userInput.Contains("cool"))
+            {
+
+                Console.WriteLine("Yo what is up!");
+
+            } else if (userInput.Contains("formal"))
+            {
+
+                Console.WriteLine("How do you do.");
+
+            } else if (userInput.Contains("yorkshire"))
+            {
+
+                Console.WriteLine("Ey up!");
+
+            } else
+            {
+                Console.WriteLine("Howdy Y'all!!");
+            }
+
             Console.ReadKey();
         }
     }
