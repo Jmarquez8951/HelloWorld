@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
 
 namespace HelloWorld
 {
@@ -47,8 +50,8 @@ namespace HelloWorld
                 return count;
             }
 
-            var i = rand.Next(animals.Length);
-            var chosenAnimal = animals[i];
+            var r = rand.Next(animals.Length);
+            var chosenAnimal = animals[r];
 
             Console.WriteLine($"Would you like to have a {favColor} {chosenAnimal}?");
 
@@ -83,13 +86,43 @@ namespace HelloWorld
                 Console.WriteLine("Howdy Y'all!!");
             }
 
+            // Letter Loops - Start
+            Console.WriteLine("Enter a group of letters.");
+            var letters = Console.ReadLine();
+            var splitLetters = letters.ToCharArray();
+            string result = new StringBuilder().ToString();
+            int j = -1;
+
+            for (int i = 0; i < splitLetters.Length; i++)
+            {
+                result += splitLetters[i].ToString().ToUpper();
+                do
+                {
+                    if (i == 0)
+                    {
+                        break;
+                    } else
+                    {
+                        result += splitLetters[i];
+                        j++;
+                    }
+                    
+                } while (j < i);
+                j = 0;
+                result += "-";
+            }
+
+            result = result.Remove(result.Length - 1, 1);
+
+            Console.WriteLine(result);
+            // Letter Loops - End
+
             ConsoleKeyInfo enteredKey;
 
             do
             {
                 enteredKey = Console.ReadKey();
-                Console.WriteLine(@$"
-                You pressed the {enteredKey.Key.ToString()} key");
+                Console.WriteLine($"You pressed the {enteredKey.Key.ToString()} key");
 
             } while (enteredKey.Key != ConsoleKey.Escape);
 
@@ -103,7 +136,6 @@ namespace HelloWorld
 
             } while (sentence != "quit");
 
-            Console.ReadKey();
         }
     }
 }
